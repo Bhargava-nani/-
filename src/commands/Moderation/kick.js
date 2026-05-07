@@ -64,7 +64,22 @@ export default {
         );
       }
 
-      
+      if (member.id === interaction.guild.ownerId) {
+
+  const logChannel = interaction.guild.channels.cache.get("1499383835182235759");
+
+if (logChannel) {
+  await logChannel.send({
+    content: `⚠️ ${interaction.user.tag} (\`${interaction.user.id}\`) tried to kick the server owner.`,
+  }).catch(console.error);
+}
+
+  throw new TitanBotError(
+    "Cannot kick owner",
+    ErrorTypes.PERMISSION,
+    "You cannot kick the server owner."
+  );
+}
       if (interaction.member.roles.highest.position <= member.roles.highest.position) {
         throw new TitanBotError(
           "Cannot kick user",
