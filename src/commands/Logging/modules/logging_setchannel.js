@@ -22,7 +22,7 @@ export default {
         const guildId = interaction.guildId;
         const currentConfig = await getGuildConfig(client, guildId);
 
-        const type = interaction.options.getString('type');
+       const type = interaction.options.getString('type');
 const logChannel = interaction.options.getChannel('channel');
 const disableLogging = interaction.options.getBoolean('disable');
 
@@ -72,6 +72,19 @@ try {
         await InteractionHelper.safeEditReply(interaction, {
             embeds: [successEmbed('Log Channel Set 📝', `**${type}** logs will be sent to ${logChannel}.`)],
         });
+
+        return;
+    }
+
+    return InteractionHelper.safeEditReply(interaction, {
+        embeds: [errorEmbed('No Option Provided', 'Provide either `channel` or `disable: true`.')],
+    });
+} catch (error) {
+    logger.error('logging setchannel error:', error);
+    await InteractionHelper.safeEditReply(interaction, {
+        embeds: [errorEmbed('Configuration Error', 'Could not save the configuration.')],
+    });
+}
 
         return;
     }
