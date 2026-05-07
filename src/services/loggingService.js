@@ -251,18 +251,34 @@ function isLoggingEnabled(config, eventType) {
 
 function getLogChannelForEvent(config, eventType) {
   const logging = config.logging || {};
-  
-  
-  if (logging.channelId) {
-    return logging.channelId;
+  const channels = logging.channels || {};
+  const category = String(eventType || '').split('.')[0];
+
+  if (channels[eventType]) {
+    return channels[eventType];
   }
 
-  
-  if (config.logChannelId) {
-    return config.logChannelId;
-  }
+  const categoryMap = {
+    security: channels.security,
+    moderation: channels.moderation,
+    ticket: channels.ticket,
+    member: channels.member,
+    message: channels.message,
+    role: channels.role,
+    giveaway: channels.giveaway,
+    leveling: channels.leveling,
+    reactionrole: channels.reactionrole,
+    counter: channels.counter,
+    common: channels.common,
+  };
 
-  return null;
+  return (
+    categoryMap[category] ||
+    logging.channelId ||
+    config.logChannelId ||
+    channels.common ||
+    null
+  );
 }
 
 
