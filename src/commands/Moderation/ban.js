@@ -32,6 +32,18 @@ export default {
             if (user.id === client.user.id) {
                 throw new Error("You cannot ban the bot.");
             }
+            if (user.id === interaction.guild.ownerId) {
+
+  const logChannel = interaction.guild.channels.cache.get("1499383835182235759");
+
+  if (logChannel) {
+    await logChannel.send({
+      content: `⚠️ ${interaction.user.tag} (\`${interaction.user.id}\`) tried to ban the server owner.`,
+    }).catch(console.error);
+  }
+
+  throw new Error("You cannot ban the server owner.");
+}
 
             
             const result = await ModerationService.banUser({
