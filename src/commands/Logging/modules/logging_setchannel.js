@@ -22,7 +22,7 @@ export default {
         const guildId = interaction.guildId;
         const currentConfig = await getGuildConfig(client, guildId);
 
-       const type = interaction.options.getString('type');
+const type = interaction.options.getString('type');
 const logChannel = interaction.options.getChannel('channel');
 const disableLogging = interaction.options.getBoolean('disable');
 
@@ -45,7 +45,7 @@ try {
         await setGuildConfig(client, guildId, currentConfig);
 
         return InteractionHelper.safeEditReply(interaction, {
-            embeds: [successEmbed('Logging Updated 🚫', `Disabled **${type}** logging.`)],
+            embeds: [successEmbed('🚫 Logging Updated', `Disabled **${type}** logs.`)],
         });
     }
 
@@ -53,7 +53,7 @@ try {
         const perms = logChannel.permissionsFor(interaction.guild.members.me);
         if (!perms.has(PermissionsBitField.Flags.SendMessages) || !perms.has(PermissionsBitField.Flags.EmbedLinks)) {
             return InteractionHelper.safeEditReply(interaction, {
-                embeds: [errorEmbed('Bot Permission Error', `I need **Send Messages** and **Embed Links** permissions in ${logChannel}.`)],
+                embeds: [errorEmbed('⚠️ Bot Permission Error', `I need **Send Messages** and **Embed Links** in ${logChannel}.`)],
             });
         }
 
@@ -70,32 +70,19 @@ try {
         await setGuildConfig(client, guildId, currentConfig);
 
         await InteractionHelper.safeEditReply(interaction, {
-            embeds: [successEmbed('Log Channel Set 📝', `**${type}** logs will be sent to ${logChannel}.`)],
+            embeds: [successEmbed('✅ Log Channel Set', `**${type}** logs will go to ${logChannel}.`)],
         });
 
         return;
     }
 
     return InteractionHelper.safeEditReply(interaction, {
-        embeds: [errorEmbed('No Option Provided', 'Provide either `channel` or `disable: true`.')],
+        embeds: [errorEmbed('❓ No Option Provided', 'Use either `channel` or `disable: true`.')],
     });
 } catch (error) {
     logger.error('logging setchannel error:', error);
     await InteractionHelper.safeEditReply(interaction, {
-        embeds: [errorEmbed('Configuration Error', 'Could not save the configuration.')],
-    });
-}
-
-        return;
-    }
-
-    return InteractionHelper.safeEditReply(interaction, {
-        embeds: [errorEmbed('No Option Provided', 'Provide either `channel` or `disable: true`.')],
-    });
-} catch (error) {
-    logger.error('logging setchannel error:', error);
-    await InteractionHelper.safeEditReply(interaction, {
-        embeds: [errorEmbed('Configuration Error', 'Could not save the configuration.')],
+        embeds: [errorEmbed('💥 Configuration Error', 'Could not save the log settings.')],
     });
 }
                 return;
