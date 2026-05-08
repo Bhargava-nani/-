@@ -158,7 +158,7 @@ export async function createInitialHelpMenu(client) {
     );
 
     embed.setFooter({ 
-        text: "Made with ❤️" 
+        text: "Made with NANI ❤️" 
     });
     embed.setTimestamp();
 
@@ -200,9 +200,8 @@ export default {
         .setName("help")
         .setDescription("Displays the help menu with all available commands"),
 
-    async execute(interaction, guildConfig, client) {
-        
-        const { MessageFlags } = await import('discord.js');
+async execute(interaction, guildConfig, client) {
+
         await InteractionHelper.safeDefer(interaction);
         
         const { embeds, components } = await createInitialHelpMenu(client);
