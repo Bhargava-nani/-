@@ -23,11 +23,7 @@ export default {
   async execute(entry, guild) {
     try {
       if (!guild || !entry) return;
-
-      // Ignore bot's own actions
       if (!entry.executorId || entry.executorId === guild.client.user.id) return;
-
-      // Only moderation/audit related actions
       if (!MOD_ACTIONS.has(entry.action)) return;
 
       const embed = new EmbedBuilder()
