@@ -14,24 +14,32 @@ const GUILD_CONFIG_DEFAULTS = {
     dmOnClose: true,
     logIgnore: { users: [], channels: [] },
    logging: {
-    enabled: false,
-    channelId: null,
-    channels: {
-        security: null,
-        moderation: null,
-        ticket: null,
-        member: null,
-        message: null,
-        role: null,
-        giveaway: null,
-        leveling: null,
-        reactionrole: null,
-        counter: null,
-        common: null,
-    },
-    enabledEvents: {}
-}
-};
+  enabled: false,
+  channelId: null,
+  channels: {
+    security: null,
+    moderation: null,
+    ticket: null,
+    member: null,
+    message: null,
+    role: null,
+    giveaway: null,
+    leveling: null,
+    reactionrole: null,
+    counter: null,
+    invite: null,
+    common: null,
+  },
+  enabledEvents: {},
+},
+quiz: {
+  enabled: false,
+  channelId: null,
+  leaderboardChannelId: null,
+  nextRunAt: null,
+  questionCount: 5,
+  answerWindowMs: 60000,
+},
 
 
 
