@@ -20,6 +20,7 @@ const CATEGORY_MAP = [
     ['message',      '✉️ Message Events'],
     ['role',         '🏷️ Role Events'],
     ['member',       '👥 Member Events'],
+    ['invite',       '📨 Invite Events'],
     ['leveling',     '📈 Leveling Events'],
     ['reactionrole', '🎭 Reaction Role Events'],
     ['giveaway',     '🎁 Giveaway Events'],
