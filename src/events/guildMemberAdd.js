@@ -7,6 +7,7 @@ import { logEvent, EVENT_TYPES } from '../services/loggingService.js';
 import { getServerCounters, updateCounter } from '../services/serverstatsService.js';
 import { setBirthday as dbSetBirthday } from '../utils/database.js';
 import { logger } from '../utils/logger.js';
+import { getGuildInviteSnapshot, detectUsedInvite, primeGuildInvites } from '../utils/inviteTracker.js';
 
 export default {
   name: Events.GuildMemberAdd,
@@ -17,6 +18,56 @@ export default {
         const { guild, user } = member;
         
         const config = await getGuildConfig(member.client, guild.id);
+      const inviteSnapshot = getGuildInviteSnapshot(guild.id);
+const afterInvites = await guild.invites.fetch().catch(() => null);
+const usedInvite = detectUsedInvite(inviteSnapshot, afterInvites);
+
+if (afterInvites) {
+  await primeGuildInvites(guild).catch(() => {});
+}
+
+try {
+  await logEvent({
+    client: member.client,
+    guildId: guild.id,
+    eventType: EVENT_TYPES.INVITE_JOIN,
+    data: {
+      title: '📨 Invite Join Tracked',
+      description: usedInvite
+        ? `${user.tag} joined the server using an invite link.`
+        : `${user.tag} joined the server, but the invite could not be resolved.`,
+      userId: user.id,
+      fields: [
+        {
+          name: '👤 Member',
+          value: `${user.tag} (${user.id})`,
+          inline: true,
+        },
+        {
+          name: '🙋 Inviter',
+          value: usedInvite?.inviter
+            ? `${usedInvite.inviter.tag} (${usedInvite.inviter.id})`
+            : usedInvite?.inviterId
+              ? `\`${usedInvite.inviterId}\``
+              : 'Unknown / Vanity',
+          inline: true,
+        },
+        {
+          name: '🔗 Invite Code',
+          value: usedInvite?.code ? `\`${usedInvite.code}\`` : 'Unknown',
+          inline: true,
+        },
+        {
+          name: '📈 Uses',
+          value: usedInvite?.uses != null ? String(usedInvite.uses) : 'Unknown',
+          inline: true,
+        },
+      ],
+    },
+  });
+} catch (error) {
+  logger.debug('Error logging invite join:', error);
+}
         
         const welcomeConfig = await getWelcomeConfig(member.client, guild.id);
         
