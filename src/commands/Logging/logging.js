@@ -20,44 +20,43 @@ export default {
                 .setDescription('Open the interactive logging dashboard — view status and toggle event categories.')
         )
 
-        .addSubcommand((subcommand) =>
+               .addSubcommand((subcommand) =>
             subcommand
                 .setName('setchannel')
                 .setDescription('📌 Set a specific log channel for one log type.')
-               .addStringOption((option) =>
-  option
-    .setName('type')
-    .setDescription('🧭 Which log type to configure')
-    .setRequired(true)
-    .addChoices(
-      { name: '🛡️ Security', value: 'security' },
-      { name: '⚔️ Moderation', value: 'moderation' },
-      { name: '🎫 Ticket', value: 'ticket' },
-      { name: '👥 Member', value: 'member' },
-      { name: '💬 Message', value: 'message' },
-      { name: '🎭 Role', value: 'role' },
-      { name: '🎉 Giveaway', value: 'giveaway' },
-      { name: '📈 Leveling', value: 'leveling' },
-      { name: '🔁 Reaction Role', value: 'reactionrole' },
-      { name: '🔢 Counter', value: 'counter' },
-      { name: '📨 Invite', value: 'invite' },
-      { name: '✨ Common', value: 'common' }
-    )
-)
+                .addStringOption((option) =>
+                    option
+                        .setName('type')
+                        .setDescription('🧭 Which log type to configure')
+                        .setRequired(true)
+                        .addChoices(
+                            { name: '🛡️ Security', value: 'security' },
+                            { name: '⚔️ Moderation', value: 'moderation' },
+                            { name: '🎫 Ticket', value: 'ticket' },
+                            { name: '👥 Member', value: 'member' },
+                            { name: '💬 Message', value: 'message' },
+                            { name: '🎭 Role', value: 'role' },
+                            { name: '🎉 Giveaway', value: 'giveaway' },
+                            { name: '📈 Leveling', value: 'leveling' },
+                            { name: '🔁 Reaction Role', value: 'reactionrole' },
+                            { name: '🔢 Counter', value: 'counter' },
+                            { name: '📨 Invite', value: 'invite' },
+                            { name: '✨ Common', value: 'common' },
+                        ),
                 )
                 .addChannelOption((option) =>
                     option
                         .setName('channel')
                         .setDescription('📣 The text channel for that log type.')
                         .addChannelTypes(ChannelType.GuildText, ChannelType.GuildAnnouncement)
-        .setRequired(false),
-)
+                        .setRequired(false),
+                )
                 .addBooleanOption((option) =>
                     option
                         .setName('disable')
                         .setDescription('🚫 Disable that log type.')
-                        .setRequired(false)
-                )
+                        .setRequired(false),
+                ),
         )
 
         .addSubcommandGroup((group) =>
