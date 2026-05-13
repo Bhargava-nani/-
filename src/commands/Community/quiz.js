@@ -5,7 +5,7 @@ import {
   EmbedBuilder,
 } from 'discord.js';
 import { getGuildConfig, setGuildConfig } from '../../services/guildConfig.js';
-import { getQuizStatus, startWeeklyQuiz } from '../../services/quizServices.js';
+import { getQuizStatus, startWeeklyQuiz } from '../../services/quizService.js';
 
 const WEEK_MS = 7 * 24 * 60 * 60 * 1000;
 
