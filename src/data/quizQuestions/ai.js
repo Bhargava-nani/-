@@ -1,9 +1,5 @@
-export const aiQuestions = aiQuestions.map((q) => ({
-  ...q,
-  options: q.options.map((opt) => opt.replace(/^[A-D]\)\s*/, '')),
-}));
 
-export const aiQuestions = [
+ const rawAiQuestions = [
   { id: 'ai-001', question: 'What does "AI" stand for in technology? 🤖', options: ['A) Automated Inquiry', 'B) Artificial Intelligence', 'C) Analog Interface', 'D) Autonomous Innovation'], answerIndex: 1, points: 1 },
   { id: 'ai-002', question: 'What is machine learning? 📚', options: ['A) A way for computers to learn from data and improve over time', 'B) Programming computers by giving fixed rules', 'C) Writing code with machines', 'D) Using robots to teach classes'], answerIndex: 0, points: 1 },
   { id: 'ai-003', question: 'What is deep learning? 🧠', options: ['A) Training with large neural networks (multilayered)', 'B) Learning while asleep', 'C) A programming language', 'D) Using search engines to find answers'], answerIndex: 0, points: 1 },
@@ -106,3 +102,7 @@ export const aiQuestions = [
   { id: 'ai-100', question: 'Why is ethics important in AI? 🌐', options: ['A) To ensure fairness and avoid harmful outcomes', 'B) To make AI faster', 'C) To lower electricity usage', 'D) To set AI passwords'], answerIndex: 0, points: 1 }
 ];
 
+export const aiQuestions = rawAiQuestions.map((q) => ({
+  ...q,
+  options: q.options.map((opt) => opt.replace(/^[A-D]\)\s*/, '')),
+}));
