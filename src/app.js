@@ -231,7 +231,7 @@ class TitanBot extends Client {
   setupCronJobs() {
     cron.schedule('0 6 * * *', () => checkBirthdays(this));
     cron.schedule('* * * * *', () => checkGiveaways(this));
-    cron.schedule('*/1 * * * *', () => runQuizScheduler(this));
+    cron.schedule('30 12 * * 0', () => runQuizScheduler(this));
     cron.schedule('*/15 * * * *', () => this.updateAllCounters());
   }
 
