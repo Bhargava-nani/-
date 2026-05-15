@@ -1,3 +1,7 @@
+const BIDI_RE = /[\u200E\u200F\u202A-\u202E\u2066-\u2069]/g;
+
+const clean = (text) => text.replace(BIDI_RE, '');
+
 const rawSportsGeoQuestions = [
 
   // 🏆 Sports (sports-001 to sports-050)
@@ -108,7 +112,7 @@ const rawSportsGeoQuestions = [
 
 ];
 
-export const sports_geo = rawSportsGeoQuestions.map((q) => ({
+export const sportsGeoQuestions = rawSportsGeoQuestions.map((q) => ({
   ...q,
   options: q.options.map((opt) => opt.replace(/^[A-D]\)\s*/, '')),
 }));
