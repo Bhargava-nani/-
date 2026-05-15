@@ -108,7 +108,7 @@ const rawConstitutionQuestions = [
 
 ];
 
-export const constitutionQuestions = rawConstitutionQuestions.map((q) => ({
+export const lawIndiaQuestions = rawConstitutionQuestions.map((q) => ({
   ...q,
   options: q.options.map((opt) => opt.replace(/^[A-D]\)\s*/, '')),
 }));
