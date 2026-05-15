@@ -108,7 +108,7 @@ const rawCyberQuestions = [
 
 ];
 
-export const cyberQuestions = rawCyberQuestions.map((q) => ({
+export const hacking = rawCyberQuestions.map((q) => ({
   ...q,
   options: q.options.map((opt) => opt.replace(/^[A-D]\)\s*/, '')),
 }));
