@@ -28,7 +28,7 @@ const rawSportsGeoQuestions = [
   { id: 'sports-024', question: 'Which Indian cricketer is nicknamed "Master Blaster"? 🏏', options: ['Virat Kohli 🇮🇳', 'Rohit Sharma 🏏', 'Sachin Tendulkar 🏏', 'MS Dhoni 🧤'], answerIndex: 2, points: 1 },
   { id: 'sports-025', question: 'Who holds the record for the most men\'s Grand Slam titles in tennis? 🎾', options: ['Pete Sampras 🎾', 'Roger Federer 🎾', 'Rafael Nadal 🎾', 'Novak Djokovic 🎾'], answerIndex: 3, points: 1 },
   { id: 'sports-026', question: 'What is Canada\'s official national winter sport? ❄️', options: ['Ice Hockey 🏒', 'Curling 🥌', 'Skiing ⛷️', 'Snowboarding 🏂'], answerIndex: 0, points: 1 },
-  { id: 'sports-027', question: 'Which country invented basketball? 🏀', options: ['USA 🇺🇸', 'Canada 🏀', 'UK 🇬🇧', 'France 🇫🇷'], answerIndex: 1, points: 1 },
+{ id: 'sports-027', question: 'Which country invented basketball? 🏀', options: ['USA 🇺🇸', 'Canada 🏀', 'UK 🇬🇧', 'France 🇫🇷'], answerIndex: 0, points: 1 },
   { id: 'sports-028', question: 'Which city hosted the very first modern Olympic Games? 🏅', options: ['Paris 🗼', 'London 🎡', 'Athens 🏛️', 'Rome 🇮🇹'], answerIndex: 2, points: 1 },
   { id: 'sports-029', question: 'What is "The Ashes" in cricket? 🏏', options: ['India vs Pakistan Test series 🔥', 'Australia vs England Test series 🏏', 'The ICC World Cup final 🏆', 'A bilateral ODI championship 🌍'], answerIndex: 1, points: 1 },
   { id: 'sports-030', question: 'How many points is a touchdown worth in American Football? 🏈', options: ['4 points 🏈', '5 points 🏈', '6 points 🏈', '7 points 🏈'], answerIndex: 2, points: 1 },
